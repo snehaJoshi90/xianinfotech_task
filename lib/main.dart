@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xianinfotech_task/screens/home_screen/home_screen.dart';
 import 'package:xianinfotech_task/screens/bottom_navigation_screen.dart';
+import 'package:xianinfotech_task/screens/sale_screen/widgets/date_widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,10 +31,11 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: BottomNavigationScreen(),
+      home:
+       BottomNavigationScreen(),
       //HomeScreen()
       //const MyHomePage(title: 'Flutter Demo Home Page'),
     );

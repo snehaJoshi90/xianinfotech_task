@@ -2,6 +2,26 @@ import 'package:flutter/material.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
+enum FrimLabel {
+  smile(
+    'xianinfotech LLP',
+  ),
+  cloud(
+    'xianinfotech LLP',
+  ),
+  brush(
+    'xianinfotech LLP',
+  ),
+  heart(
+    'xianinfotech LLP',
+  );
+
+  const FrimLabel(this.label);
+
+  final String label;
+  //final IconData icon;
+}
+
 class FirmNameDropdown extends StatefulWidget {
   const FirmNameDropdown({super.key});
 
@@ -10,31 +30,55 @@ class FirmNameDropdown extends StatefulWidget {
 }
 
 class _FirmNameDropdownState extends State<FirmNameDropdown> {
+  final TextEditingController iconController = TextEditingController();
 
-  String dropdownValue = list.first;
+  FrimLabel? selectedIcon;
+
   @override
   Widget build(BuildContext context) {
-    return  DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
+    return DropdownMenu<FrimLabel>(
+      controller: iconController,
+
+      trailingIcon: Icon(Icons.expand_more),
+      width: MediaQuery.of(context).size.width*0.75,
+      enableFilter: true,
+
+      requestFocusOnTap: true,
+      textStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+      //leadingIcon: const Icon(Icons.search),
+      //  label: const Text('Icon'),
+      inputDecorationTheme: const InputDecorationTheme(
+        isDense: true,
+
+        filled: true,
+        //contentPadding: EdgeInsets.symmetric(vertical: 5.0),
+        fillColor: Colors.transparent,
+        contentPadding: EdgeInsets.zero,
+        outlineBorder: BorderSide.none,
+        border: InputBorder.none,
+        // Removes the border
+        enabledBorder: InputBorder.none,
+        // Removes the enabled border
+        focusedBorder: InputBorder.none,
+        // Removes the focused border
+        errorBorder: InputBorder.none,
+        // Removes the error border
+        disabledBorder: InputBorder.none,
       ),
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
+      onSelected: (FrimLabel? icon) {
         setState(() {
-          dropdownValue = value!;
+          selectedIcon = icon;
         });
       },
-      items: list.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );();
+      dropdownMenuEntries: FrimLabel.values.map<DropdownMenuEntry<FrimLabel>>(
+        (FrimLabel icon) {
+          return DropdownMenuEntry<FrimLabel>(
+            value: icon,
+            label: icon.label,
+            //leadingIcon: Icon(icon.icon),
+          );
+        },
+      ).toList(),
+    );
   }
 }
